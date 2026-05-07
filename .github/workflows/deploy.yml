@@ -1,9 +1,16 @@
 name: deploy terraform code
 
 on:
-  pull_request:
-    branches: [ main ]
-
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'choose an action to perform'
+        required: true
+        default: 'apply'
+        type: choice
+        options:
+          - apply
+          - destroy
 jobs:
   deploy:     
     runs-on: ubuntu-latest   # Use the latest Ubuntu runner, creates virtual environment for the job
