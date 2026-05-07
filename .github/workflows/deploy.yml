@@ -1,16 +1,9 @@
 name: deploy terraform code
 
 on:
-  workflow_dispatch:   # Allows manual triggering of the workflow from the GitHub Actions tab
-    inputs:
-      action:
-        description: 'Choose an action to perform'
-        required: true
-        default: 'apply'
-        type: choice
-        options:
-          - apply
-          - destroy
+  pull_request:
+    branches: [ main ]
+
 jobs:
   deploy:     
     runs-on: ubuntu-latest   # Use the latest Ubuntu runner, creates virtual environment for the job
